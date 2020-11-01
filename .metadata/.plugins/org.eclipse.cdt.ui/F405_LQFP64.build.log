@@ -1,14 +1,13 @@
-16:15:37 **** Incremental Build of configuration Debug for project F405_LQFP64 ****
+11:24:14 **** Incremental Build of configuration Debug for project F405_LQFP64 ****
 make -j4 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DSTM32F405xx -DUSE_HAL_DRIVER -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "F405_LQFP64.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/chris/Projects/Embedded/CirrusDspPedal_SW/F405_LQFP64/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F405_LQFP64.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+arm-none-eabi-gcc -o "F405_LQFP64.elf" @"objects.list"  -lPrintfLib -mcpu=cortex-m4 -T"/home/chris/Projects/Embedded/CirrusDspPedal_SW/F405_LQFP64/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F405_LQFP64.map" -Wl,--gc-sections -static -L"/home/chris/Projects/Embedded/CirrusDspPedal_SW/PrintfLib/Debug" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: F405_LQFP64.elf
  
 arm-none-eabi-objdump -h -S  F405_LQFP64.elf  > "F405_LQFP64.list"
 arm-none-eabi-objcopy  -O binary  F405_LQFP64.elf  "F405_LQFP64.bin"
 arm-none-eabi-size   F405_LQFP64.elf 
    text	   data	    bss	    dec	    hex	filename
-  15288	     20	   5988	  21296	   5330	F405_LQFP64.elf
+  24192	     20	   5988	  30200	   75f8	F405_LQFP64.elf
 Finished building: default.size.stdout
  
 Finished building: F405_LQFP64.bin
@@ -16,5 +15,5 @@ Finished building: F405_LQFP64.bin
 Finished building: F405_LQFP64.list
  
 
-16:15:38 Build Finished. 0 errors, 0 warnings. (took 892ms)
+11:24:14 Build Finished. 0 errors, 0 warnings. (took 693ms)
 

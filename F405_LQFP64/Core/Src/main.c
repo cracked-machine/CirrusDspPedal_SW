@@ -28,6 +28,8 @@
 /* USER CODE BEGIN Includes */
 #include <math.h>
 #include <stdio.h>
+
+#include "printf.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -77,14 +79,6 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-int _write(int file, char *ptr, int len)
-{
-  /* Implement your write code here, this is used by puts and printf for example */
-  int i=0;
-  for(i=0 ; i<len ; i++)
-    ITM_SendChar((*ptr++));
-  return len;
-}
 
 float calc_adc_oversample()
 {
@@ -109,6 +103,15 @@ int Do_HighPass (int inSample) {
 	a2 = 0.9862117951198142f;
 	b1 = -1.972233470205696f;
 	b2 = 0.9726137102735608f;
+/*
+	//Shift = adc_data_in/100;
+	//300Hz high-pass, 192k
+	a0 = 0.9930819695180432;
+	a1 = -1.9861639390360863;
+	a2 = 0.9930819695180432;
+	b1 = -1.9861160802293198;
+	b2 = 0.986211797842853;
+*/
 
 	float inSampleF = (float)inSample;
 	float outSampleF =
@@ -121,6 +124,9 @@ int Do_HighPass (int inSample) {
 	hp_in_z1 = inSampleF;
 	hp_out_z2 = hp_out_z1;
 	hp_out_z1 = outSampleF;
+
+	// TODO
+	//outSampleF = outSampleF * 0.1f;
 
 	return (int) outSampleF;
 }
@@ -247,14 +253,15 @@ int main(void)
   MX_ADC1_Init();
   MX_I2S2_Init();
   /* USER CODE BEGIN 2 */
-
+  printf("Starting/n");
+  //int res = testfunc();
   HAL_I2SEx_TransmitReceive_DMA (&hi2s2, txBuf, rxBuf, 4);
 
 	//0°
 	WtrP = 0;
 
 	Rd_P = 0.0f;
-	Shift = 1.4f;
+	Shift = 1.0f;
 	CrossFade = 1.0f;
   /* USER CODE END 2 */
 
@@ -338,7 +345,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_I2S;
-  PeriphClkInitStruct.PLLI2S.PLLI2SN = 192;
+  PeriphClkInitStruct.PLLI2S.PLLI2SN = 384;
   PeriphClkInitStruct.PLLI2S.PLLI2SR = 2;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {

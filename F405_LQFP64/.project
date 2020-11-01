@@ -3,6 +3,7 @@
 	<name>F405_LQFP64</name>
 	<comment></comment>
 	<projects>
+		<project>PrintfLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

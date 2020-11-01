@@ -1,0 +1,2 @@
+core_cm4.h:2064:26:ITM_SendChar	16	static,ignoring_inline_asm
+putchar.c:10:6:_putchar	16	static
