@@ -1,0 +1,14 @@
+/*
+ * SEGGER_RTT_Syscalls_GCC.h
+ *
+ *  Created on: Nov 1, 2020
+ *      Author: chris
+ */
+
+#ifndef SEGGER_RTT_SYSCALLS_GCC_H_
+#define SEGGER_RTT_SYSCALLS_GCC_H_
+
+int _write(int file, char *ptr, int len);
+_ssize_t _write_r(struct _reent *r, int file, const void *ptr, size_t len);
+
+#endif /* SEGGER_RTT_SYSCALLS_GCC_H_ */

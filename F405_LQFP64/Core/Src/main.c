@@ -28,8 +28,8 @@
 /* USER CODE BEGIN Includes */
 #include <math.h>
 #include <stdio.h>
+#include "SEGGER_RTT.h"
 
-#include "printf.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,6 +54,8 @@
 
 /* USER CODE BEGIN PV */
 
+
+
 int Buf[BufSize];
 
 int WtrP;
@@ -68,6 +70,9 @@ uint32_t adc_dma_data_in[ADC_DATA_LEN] = {};
 uint16_t rxBuf[8];
 uint16_t txBuf[8];
 
+
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -78,7 +83,11 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int _write(int file, char *ptr, int len) {
+  (void) file;  /// Not used, avoid warning
+  SEGGER_RTT_Write(0, ptr, len);
+  return len;
+}
 
 float calc_adc_oversample()
 {
@@ -187,6 +196,9 @@ void HAL_I2SEx_TxRxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
 	int lSample = (int) (rxBuf[0]<<16)|rxBuf[1];
 	int rSample = (int) (rxBuf[2]<<16)|rxBuf[3];
 
+	//SEGGER_RTT_printf(0, "lSample:%lu\r\n", lSample);
+	printf("lSample:%i\r\n", lSample);
+
 	int ret_sample = Do_PitchShift(lSample, rSample);
 	lSample = ret_sample;
 	rSample = ret_sample;
@@ -253,7 +265,7 @@ int main(void)
   MX_ADC1_Init();
   MX_I2S2_Init();
   /* USER CODE BEGIN 2 */
-  printf("Starting/n");
+  SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
   //int res = testfunc();
   HAL_I2SEx_TransmitReceive_DMA (&hi2s2, txBuf, rxBuf, 4);
 

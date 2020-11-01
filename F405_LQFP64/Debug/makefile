@@ -46,11 +46,11 @@ F405_LQFP64.bin \
 all: F405_LQFP64.elf secondary-outputs
 
 dependents:
-	-cd /home/chris/Projects/Embedded/CirrusDspPedal_SW/PrintfLib/Debug && $(MAKE) clean all
+	-cd /home/chris/Projects/Embedded/CirrusDspPedal_SW/SeggerRTTLib/Debug && $(MAKE) all
 
 # Tool invocations
-F405_LQFP64.elf: $(OBJS) $(USER_OBJS) /home/chris/Projects/Embedded/CirrusDspPedal_SW/PrintfLib/Debug/libPrintfLib.a /home/chris/Projects/Embedded/CirrusDspPedal_SW/F405_LQFP64/STM32F405RGTX_FLASH.ld
-	arm-none-eabi-gcc -o "F405_LQFP64.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/chris/Projects/Embedded/CirrusDspPedal_SW/F405_LQFP64/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F405_LQFP64.map" -Wl,--gc-sections -static -L"/home/chris/Projects/Embedded/CirrusDspPedal_SW/PrintfLib/Debug" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+F405_LQFP64.elf: $(OBJS) $(USER_OBJS) /home/chris/Projects/Embedded/CirrusDspPedal_SW/SeggerRTTLib/Debug/libSeggerRTTLib.a /home/chris/Projects/Embedded/CirrusDspPedal_SW/F405_LQFP64/STM32F405RGTX_FLASH.ld
+	arm-none-eabi-gcc -o "F405_LQFP64.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/chris/Projects/Embedded/CirrusDspPedal_SW/F405_LQFP64/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F405_LQFP64.map" -Wl,--gc-sections -static -L"/home/chris/Projects/Embedded/CirrusDspPedal_SW/SeggerRTTLib/Debug" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -78,6 +78,6 @@ secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
 .PHONY: all clean dependents
 .SECONDARY:
-/home/chris/Projects/Embedded/CirrusDspPedal_SW/PrintfLib/Debug/libPrintfLib.a:
+/home/chris/Projects/Embedded/CirrusDspPedal_SW/SeggerRTTLib/Debug/libSeggerRTTLib.a:
 
 -include ../makefile.targets

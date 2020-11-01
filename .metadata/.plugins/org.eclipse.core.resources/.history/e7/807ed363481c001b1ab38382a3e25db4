@@ -1,0 +1,13 @@
+/*
+ * SEGGER_RTT_Syscalls_GCC.h
+ *
+ *  Created on: Nov 1, 2020
+ *      Author: chris
+ */
+
+#ifndef SEGGER_RTT_SYSCALLS_GCC_H_
+#define SEGGER_RTT_SYSCALLS_GCC_H_
+
+
+
+#endif /* SEGGER_RTT_SYSCALLS_GCC_H_ */

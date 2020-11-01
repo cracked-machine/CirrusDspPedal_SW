@@ -3,7 +3,7 @@
 	<name>F405_LQFP64</name>
 	<comment></comment>
 	<projects>
-		<project>PrintfLib</project>
+		<project>SeggerRTTLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

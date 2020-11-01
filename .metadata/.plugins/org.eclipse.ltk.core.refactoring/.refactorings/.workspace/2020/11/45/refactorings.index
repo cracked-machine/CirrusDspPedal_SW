@@ -3,3 +3,5 @@
 1604228818264	Delete resource 'PrintfLib'
 1604228886645	Delete resource 'TestLib'
 1604229207290	Delete resource 'PrintfLib/Src/PrintfLib.c'
+1604231099341	Delete resource 'SeggerRTTLib/Src/SeggerRTTLib.c'
+1604238093943	Delete resource 'SeggerRTTLib/RTT/SEGGER_RTT_Syscalls_GCC.c'
